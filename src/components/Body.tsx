@@ -18,7 +18,7 @@ const Body = () => {
                 items-center justify-center cursor-pointer"
                 onClick={() => {
 
-                    setHeights(prev => [...prev.sort()])
+                    setHeights(prev => [...prev.sort((a,b) => a -b)])
 
 
                     return heights
