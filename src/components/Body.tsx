@@ -14,6 +14,15 @@ const Body = () => {
         return (
         <section className="h-full w-full ">
             <div className="flex gap-1 items-end">
+                <div className="h-10 w-24 bg-emerald-500 text-black flex
+                items-center justify-center cursor-pointer"
+                onClick={() => {
+
+                    setHeights(prev => [...prev.sort()])
+
+
+                    return heights
+                }}>Sort</div>
                 {heights.map((height, i) => <Bar key={i} height={height}/>)}
             </div>
         </section>
