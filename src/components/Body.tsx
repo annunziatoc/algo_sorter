@@ -1,31 +1,36 @@
+import {useEffect, useState} from "react";
+
 const Body = () => {
-    const arr = [];
-    for (let i = 0; i < 65; i++) {
-        arr.push(<Bar key={i}/>);
-    }
 
-    return (
-        <section className="border h-full w-full ">
+    const [heights, setHeights] = useState<number[]>([]);
+
+    useEffect(() => {
+        const newHeights = Array(65).fill(0).map(
+            () => Math.floor(Math.random() * 250) + 10
+        );
+        setHeights(newHeights);
+    }, []);
+
+        return (
+        <section className="h-full w-full ">
             <div className="flex gap-1 items-end">
-
-                {arr}
-
+                {heights.map((height, i) => <Bar key={i} height={height}/>)}
             </div>
         </section>
     )
 }
 
-const Bar = () => {
-    const randInt = Math.floor(Math.random() * 250)
-    const minHeight = 10
-    const height = `${minHeight + randInt}px`
+interface BarProps {
+    height: number;
+}
 
+const Bar = ({height}: BarProps) => {
     return (
         <div className="rounded-sm w-[6px] h-96 bg-blue-500 "
-             style={{ height: height }}>
+             style={{height: `${height}px`}}>
         </div>
     )
 }
 
 
-export default Body
+export default Body ;
