@@ -54,7 +54,7 @@ const Body = () => {
                     // Update state
                     setBarsArr([...arr])
                     // Wait for transition to complete
-                    await new Promise(resolve => setTimeout(resolve, 150));
+                    await new Promise(resolve => setTimeout(resolve, 1000));
                     // Clear highlights after swap
                     setHighlightedIds([]);
                     swapped = true;
@@ -75,13 +75,14 @@ const Body = () => {
     const AsciiBar = ({id, chars, offset}: BarProps) => {
         return (
             <div
-                className={`border-2 flex flex-col items-end absolute transition-all duration-150 ease-in-out 
+                className={`border-2 flex flex-col items-end absolute
                 ${highlightedIds.includes(id) ? 'border-emerald-400' : ' border-slate-500'
                 }`}
                 style={{
                     writingMode: 'vertical-lr',
                     transform: `translateX(${offset}px)`,
                     transformOrigin: 'bottom right',
+                    transition: 'all 1000ms ease-in-out '
                 }}
             >
                 {chars}
