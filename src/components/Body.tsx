@@ -1,16 +1,19 @@
 import {useEffect, useState} from "react";
 
 const Body = () => {
-    const [bars, setBars] = useState<Array<{ height: number; chars: string[]; offset: number; }>>([]);
-    const BAR_SPACING = 32 //pixels between each bar
+    // Updated type to include id
+    const [barsArr, setBarsArr] = useState<Array<{ id: number; height: number; chars: string[]; offset: number; }>>([]);
+    const [highlightedIds, setHighlightedIds] = useState<number[]>([]);
+    const BAR_SPACING = 32;
 
     const SorterButton = () => {
         return (
             <div
                 className="h-10 w-24 bg-emerald-500 text-black flex items-center justify-center cursor-pointer mr-4"
-                onClick={() => {
-                    setBars(prev => bubbleSort(prev));
-                }}>
+                onClick={async () => {
+                    await bubbleSort(barsArr);
+                }}
+            >
                 Sort
             </div>
         )
@@ -18,80 +21,93 @@ const Body = () => {
 
     useEffect(() => {
         const asciiChars = [
-            '@', '#', '&', '$', '%', ')', '(', ']', '[', '}', '{', '*', '=', '+', ':', ';',
-            '~', '"', ',', '^', '`', '\'', '-', '/', '\\', '|', '_', '.', '`'
-        ];
-        // create a 2d array of ascii bars
-        // first array is zeros and will be filled with ascii bars of random height
-        const newBars = Array(20).fill(0).map((_, index) => {
-
+            '@', '#', '&', '$', '%', ')', '(', ']', '[', '}', '{', '*', '=', '+', ':', ';', '~', '"', ',', '^', '`', '\'', '-', '/', '\\', '|', '_', '.', '`'
+        ]
+        const newBars = Array(15).fill(0).map((_, index) => {
             const height = Math.floor(Math.random() * 35) + 1;
-            //make an array of ascii chars of random length
             const chars = Array.from(
                 {length: height},
                 () => asciiChars[Math.floor(Math.random() * asciiChars.length)]
             );
-            return {height, chars, offset: index * BAR_SPACING};
+            return {
+                id: index,
+                height,
+                chars,
+                offset: index * BAR_SPACING
+            };
         });
-        setBars(newBars);
+        setBarsArr(newBars);
     }, []);
 
+    const bubbleSort = async (arr: Array<{ id: number; height: number; chars: string[]; offset: number; }>) => {
+        for (let i = 0; i < arr.length - 1; i++) {
+            let swapped = false;
 
-
-    const bubbleSort = (arr: Array<{ height: number; chars: string[]; offset: number; }>) => {
-        const n = arr.length;
-        const sortedArr = [...arr];
-
-        //outer loop is the number of bars
-        for (let i = 0; i < n - 1; i++) {
-            //inner loops compares heights and swaps if needed
-            for (let j = 0; j < n - i - 1; j++) {
-
-                if (sortedArr[j].height > sortedArr[j + 1].height) {
-                    [sortedArr[j], sortedArr[j + 1]] = [sortedArr[j + 1], sortedArr[j]];
+            for (let j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j].height > arr[j + 1].height) {
+                    // Set highlighted IDs for the bars being swapped
+                    setHighlightedIds([arr[j].id, arr[j + 1].id]);
+                    // Swap offsets
+                    [arr[j].offset, arr[j + 1].offset] = [arr[j + 1].offset, arr[j].offset];
+                    // Swap elements
+                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                    // Update state
+                    setBarsArr([...arr])
+                    // Wait for transition to complete
+                    await new Promise(resolve => setTimeout(resolve, 150));
+                    // Clear highlights after swap
+                    setHighlightedIds([]);
+                    swapped = true;
                 }
             }
+
+            if (!swapped) break; // If no swaps were made in this pass, array is sorted
         }
-        return sortedArr;
     };
 
-//just practicing interfaces no good reason
-//but also kind of clean and explicit I think I like it
     interface BarProps {
+        id: number;
         height: number;
         chars: string[];
         offset: number;
     }
 
-    const AsciiBar = ({chars, offset}: BarProps) => {
+    const AsciiBar = ({id, chars, offset}: BarProps) => {
         return (
-            <div className="border flex flex-col items-end absolute"
-                 style={{
-                     writingMode: 'vertical-lr',
-                     transform: `translate(${offset}px)`,
-                     transformOrigin: 'bottom right',
-                 }}>
+            <div
+                className={`border-2 flex flex-col items-end absolute transition-all duration-150 ease-in-out 
+                ${highlightedIds.includes(id) ? 'border-emerald-400' : ' border-slate-500'
+                }`}
+                style={{
+                    writingMode: 'vertical-lr',
+                    transform: `translateX(${offset}px)`,
+                    transformOrigin: 'bottom right',
+                }}
+            >
                 {chars}
             </div>
         );
     };
 
-
     return (
-        //entire screen
-        <section className="h-screen w-screen flex justify-start ml-60 items-center ">
-
+        <section className="h-screen w-screen flex justify-start ml-60 items-center">
             {SorterButton()}
-
             <div className="flex items-end h-10">
-                {bars.map((bar) => (
-                    <AsciiBar height={bar.height} chars={bar.chars} offset={bar.offset}/>
+                {barsArr.map((bar) => (
+                    <AsciiBar
+                        key={bar.id}
+                        id={bar.id}
+                        height={bar.height}
+                        chars={bar.chars}
+                        offset={bar.offset}
+                    />
                 ))}
             </div>
-
         </section>
     );
 };
 
-
 export default Body;
+
+
+
