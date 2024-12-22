@@ -5,6 +5,7 @@ const Body = () => {
     const [barsArr, setBarsArr] = useState<Array<{ id: number; height: number; chars: string[]; offset: number; }>>([]);
     const [highlightedIds, setHighlightedIds] = useState<number[]>([]);
     const [isSwapping, setIsSwapping] = useState(false);
+    const [sorted, setSorted] = useState(false);
     const BAR_SPACING = 32;
 
     const SorterButton = () => {
@@ -12,7 +13,7 @@ const Body = () => {
             <div
                 className="h-10 w-24 bg-emerald-500 text-black flex items-center justify-center cursor-pointer mr-4"
                 onClick={async () => {
-                    if (!isSwapping) {
+                    if (!isSwapping && !sorted) {
                         await bubbleSort(barsArr);
                     }
                 }}
@@ -68,6 +69,7 @@ const Body = () => {
 
             if (!swapped) break; // If no swaps were made in this pass, array is sorted
         }
+        setSorted(true)
         setIsSwapping(false);
     };
 
