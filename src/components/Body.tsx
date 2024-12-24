@@ -4,8 +4,7 @@ const Body = () => {
     // Updated type to include id
     const [barsArr, setBarsArr] = useState<Array<{ id: number; height: number; chars: string[]; offset: number; }>>([]);
     const [highlightedIds, setHighlightedIds] = useState<number[]>([]);
-    const [isSwapping, setIsSwapping] = useState(false);
-    const [sorted, setSorted] = useState(false);
+    const [isAnimating, setIsAnimating] = useState(false);
     const BAR_SPACING = 32;
 
     interface BarProps {
@@ -26,7 +25,6 @@ const Body = () => {
                     writingMode: 'vertical-lr',
                     transform: `translateX(${offset}px)`,
                     transformOrigin: 'bottom right',
-                    transition: 'all 100ms ease-in-out',
                 }}
             >
                 {chars}
@@ -53,8 +51,7 @@ const Body = () => {
             };
         });
         setBarsArr(newBars);
-        setIsSwapping(false);
-        setSorted(false);
+        setIsAnimating(false);
     }, []);
 
 
@@ -68,56 +65,48 @@ const Body = () => {
          - even if the content has changed
          - hence the props and dependency arrays, checks if items === prevItems
          - //////////////////////////////////////////////////////////////////
-         - react expect state to be immutable but objects technically are
+         - react expects state to be immutable but objects technically are
          - instead of directly modifying the existing state you should create a
          - new copy of the state with the desired changes and the update the state
          - with a new copy, because react relies on reference equality checks
          - to determine if a components needs re-render
          - //////////////////////////////////////////
-
          */
 
-        // Deep copy to help prevent unwanted mutation to id state
-     const cpy = arr.map( obj => ({...obj}))
+            // Deep copy to help prevent unwanted mutation to id state
+        const cpy = arr.map(obj => ({...obj}));
 
+        // Outer loop: each pass through array
         for (let i = 0; i < cpy.length - 1; i++) {
-            //stop early if already sorted
-            //highlight bars if currently swapping
-            setIsSwapping(true);
-            let swapped = false;
+            setIsAnimating(true); // UI state for animation
+            let swapped = false; // track if any swaps occurred this pass, & stop early if sorted
 
+            // Inner loop: compare adjacent elements
             for (let j = 0; j < cpy.length - i - 1; j++) {
                 if (cpy[j].height > cpy[j + 1].height) {
-                    // Create new objects for swap
-                    const newCpy = [...cpy];
+                    // Preserve offset before swap
+                    const temp = cpy[j].offset;
 
-                    // Swap with new objects
-                    //immediately set the offset
-                    [newCpy[j], newCpy[j + 1]] = [
-                        { ...newCpy[j + 1], offset: newCpy[j].offset },
-                        { ...newCpy[j], offset: newCpy[j + 1].offset }
-                    ];
+                    // Swap elements while preserving IDs and updating positions
+                    cpy.splice(j, 2,
+                        { ...cpy[j + 1], offset: temp },      // New object with swapped offset
+                        { ...cpy[j], offset: cpy[j + 1].offset }  // New object with swapped offset
+                    );
 
-                    setHighlightedIds([newCpy[j].id, newCpy[j + 1].id]);
+                    setHighlightedIds([cpy[j].id, cpy[j + 1].id]); // Highlight swapped bars
+                    setBarsArr([...cpy]); // Create new reference to trigger React re-render
 
-                    // Update state with new array
-                    setBarsArr(newCpy);
+                    await new Promise(resolve => setTimeout(resolve, 200)); // Animation delay
+                    setHighlightedIds([]); // Clear highlights
 
-                    await new Promise(resolve => setTimeout(resolve, 100));
-                    setHighlightedIds([]);
-
-                    // Update working copy
-                    cpy.splice(j, 2, newCpy[j], newCpy[j + 1]);
-
+                    // Mark that swap occurred
                     swapped = true;
                 }
             }
 
-            if (!swapped) break;
+            if (!swapped) break; // Array sorted if no swaps needed
         }
-
-        setSorted(true);
-        setIsSwapping(false);
+        setIsAnimating(false);
     };
 
 
@@ -126,7 +115,7 @@ const Body = () => {
             <div
                 className="h-10 w-24 bg-emerald-500 text-black flex items-center justify-center cursor-pointer mr-4"
                 onClick={async () => {
-                    if (!isSwapping && !sorted) {
+                    if (!isAnimating) {
                         await bubbleSort(barsArr);
                     }
                 }}
