@@ -85,18 +85,19 @@ const Body = () => {
             for (let j = 0; j < cpy.length - i - 1; j++) {
                 if (cpy[j].height > cpy[j + 1].height) {
                     // Preserve offset before swap
-                    const temp = cpy[j].offset;
+                    const tempJ = cpy[j].offset;
+                    const tempJPlusOne = cpy[j+1].offset;
 
                     // Swap elements while preserving IDs and updating positions
                     cpy.splice(j, 2,
-                        { ...cpy[j + 1], offset: temp },      // New object with swapped offset
-                        { ...cpy[j], offset: cpy[j + 1].offset }  // New object with swapped offset
+                        { ...cpy[j + 1], offset: tempJ },      // New object with swapped offset
+                        { ...cpy[j], offset: tempJPlusOne }  // New object with swapped offset
                     );
 
                     setHighlightedIds([cpy[j].id, cpy[j + 1].id]); // Highlight swapped bars
                     setBarsArr([...cpy]); // Create new reference to trigger React re-render
 
-                    await new Promise(resolve => setTimeout(resolve, 200)); // Animation delay
+                    await new Promise(resolve => setTimeout(resolve, 150)); // Animation delay
                     setHighlightedIds([]); // Clear highlights
 
                     // Mark that swap occurred
