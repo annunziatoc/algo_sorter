@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import Logo from "./Logo.tsx";
+import PromptAndButtons from "./PromptAndButtons.tsx";
 
 const Body = () => {
 
@@ -47,7 +48,7 @@ const Body = () => {
     }
 
     const bubbleSort = async (oldArr: Bar[]) => {
-        if(!isSorted){
+        if (!isSorted) {
             setIsSorting(true)
 
             const array = [...oldArr]
@@ -59,7 +60,7 @@ const Body = () => {
                     //swap in memory
                     if (array[j].height > array[j + 1].height) {
                         [array[j], array[j + 1]] = [array[j + 1], array[j]]
-                        setHighlighted([array[j].id, array[j+1].id])
+                        setHighlighted([array[j].id, array[j + 1].id])
                     }
                     //swap the ui
 
@@ -78,38 +79,28 @@ const Body = () => {
         <>
             <div className="h-screen w-screen bg-gray-700 p-4">
                 <Logo className="h-10 stroke-gray-400 stroke-2"/>
-                    <div className="flex items-end w-full h-96 mt-10">
-                        <button className={`ml-[6%] text-nowrap`}
-                                onClick={() => {
-                                    setIsSorted(false)
-                                    setBars(generateArray())
-                                }}
-                                disabled={isSorting}>
-                            Gen New Arr
-                        </button>
-                        <button className={`mx-2 text-nowrap ${isSorting ? "opacity-50 cursor-not-allowed" : ""}`}
-                                onClick={() => (bubbleSort(bars))}
-                                disabled={isSorting}>
-                            Bubble Sort
-                        </button>
-
-                        {bars.map((bar) => {
-                            return (
-                                <div key={bar.id} className={`w-6 h-10 border-2 rounded-md flex items-center justify-end py-1 px-4 pt-4  ml-1
+                <div className="flex items-end w-full h-96 mt-10">
+                    <PromptAndButtons
+                        bars={bars} setBars={setBars}
+                        setIsSorted={setIsSorted} isSorting={isSorting}
+                        bubbleSort={bubbleSort} generateArray={generateArray}/>
+                    {bars.map((bar) => {
+                        return (
+                            <div key={bar.id} className={`w-6 h-10 border-2 rounded-md flex items-center justify-end py-1 px-4 pt-4  ml-1
                          ${highlighted.includes(bar.id) ? "border-cyan-400" : ""}`}
-                                     style={{
-                                         height: `${bar.height}rem`,
-                                         writingMode: "vertical-lr",
-                                         transition: 'all 75ms ease-in-out'
-                                     }}>
-                                    <p className="">
-                                        {bar.charArr.join("")}
-                                    </p>
-                                </div>
-                            )
-                        })}
-                    </div>
+                                 style={{
+                                     height: `${bar.height}rem`,
+                                     writingMode: "vertical-lr",
+                                     transition: 'all 75ms ease-in-out'
+                                 }}>
+                                <p className="">
+                                    {bar.charArr.join("")}
+                                </p>
+                            </div>
+                        )
+                    })}
                 </div>
+            </div>
 
 
         </>
