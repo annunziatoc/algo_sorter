@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import Logo from "./Logo.tsx";
 
 const Body = () => {
 
@@ -20,7 +21,7 @@ const Body = () => {
 
 
     const generateArray = () => {
-        const chars = ["@", "%", "$", "!", "&"]
+        const chars = ["@", "%", "$", "#", "&"]
         // generate series of  bars using an Array of Bar Objects
         return Array.from(
             {length: 15},
@@ -75,38 +76,42 @@ const Body = () => {
 
     return (
         <>
-            <div className="h-screen w-screen bg-gray-700 flex justify-start items-center">
-                <div className="flex items-end w-screen h-96">
-                    <button className={`ml-[15%] text-nowrap`}
-                            onClick={() => {
-                                setIsSorted(false)
-                                setBars(generateArray())}}
-                            disabled={isSorting}>
-                        Gen New Arr
-                    </button>
-                    <button className={`mx-2 text-nowrap ${isSorting ? "opacity-50 cursor-not-allowed" : ""}`}
-                            onClick={() => (bubbleSort(bars))}
-                            disabled={isSorting}>
-                        Bubble Sort
-                    </button>
+            <div className="h-screen w-screen bg-gray-700 p-4">
+                <Logo className="h-10 stroke-gray-400 stroke-2"/>
+                    <div className="flex items-end w-full h-96 mt-10">
+                        <button className={`ml-[6%] text-nowrap`}
+                                onClick={() => {
+                                    setIsSorted(false)
+                                    setBars(generateArray())
+                                }}
+                                disabled={isSorting}>
+                            Gen New Arr
+                        </button>
+                        <button className={`mx-2 text-nowrap ${isSorting ? "opacity-50 cursor-not-allowed" : ""}`}
+                                onClick={() => (bubbleSort(bars))}
+                                disabled={isSorting}>
+                            Bubble Sort
+                        </button>
 
-                    {bars.map((bar) => {
-                        return (
-                            <div key={bar.id} className={`w-6 h-10 border-2 rounded-md flex items-center justify-end py-1 px-4 pt-4  ml-1
+                        {bars.map((bar) => {
+                            return (
+                                <div key={bar.id} className={`w-6 h-10 border-2 rounded-md flex items-center justify-end py-1 px-4 pt-4  ml-1
                          ${highlighted.includes(bar.id) ? "border-cyan-400" : ""}`}
-                                 style={{
-                                     height: `${bar.height}rem`,
-                                     writingMode: "vertical-lr",
-                                     transition: 'all 75ms ease-in-out'
-                                 }}>
-                                <p className="">
-                                    {bar.charArr.join("")}
-                                </p>
-                            </div>
-                        )
-                    })}
+                                     style={{
+                                         height: `${bar.height}rem`,
+                                         writingMode: "vertical-lr",
+                                         transition: 'all 75ms ease-in-out'
+                                     }}>
+                                    <p className="">
+                                        {bar.charArr.join("")}
+                                    </p>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
-            </div>
+
+
         </>
     )
 }
