@@ -28,19 +28,21 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
          generateArray
      }) => {
         return (
-            <div className="flex flex-col gap-2 border mr-2">
+            <div className="flex flex-col gap-2 mr-2">
 
-                <button className={` text-nowrap`}
+                <input type="text" placeholder="What do you want to see?" maxLength={50} className="text-center">
+                </input>
+
+                <button className={`text-nowrap`}
                         onClick={() => {
-                            setIsSorted(false)
-                            setBars(generateArray())
+
                         }}
                         disabled={isSorting}>
-                    Gen New Arr
+                    Set Input
                 </button>
 
 
-                <div className="flex justify-between border gap-2">
+                <div className="flex justify-between gap-2">
                     <button className={`text-nowrap`}
                             onClick={() => {
                                 setIsSorted(false)

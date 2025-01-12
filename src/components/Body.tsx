@@ -10,6 +10,7 @@ const Body = () => {
         charArr: string[];
     }
 
+
     const [isSorting, setIsSorting] = useState(false)
     const [isSorted, setIsSorted] = useState(false)
     const [highlighted, setHighlighted] = useState<number[]>([])
