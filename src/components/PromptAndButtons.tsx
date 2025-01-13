@@ -30,16 +30,16 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
         return (
             <div className="flex flex-col gap-2 mr-2">
 
-                <input type="text" placeholder="What do you want to see?" maxLength={50} className="text-center">
-                </input>
+                {/*<input type="text" placeholder="What do you want to see?" maxLength={50} className="text-center">*/}
+                {/*</input>*/}
 
-                <button className={`text-nowrap`}
-                        onClick={() => {
+                {/*<button className={`text-nowrap`}*/}
+                {/*        onClick={() => {*/}
 
-                        }}
-                        disabled={isSorting}>
-                    Set Input
-                </button>
+                {/*        }}*/}
+                {/*        disabled={isSorting}>*/}
+                {/*    Set Input*/}
+                {/*</button>*/}
 
 
                 <div className="flex justify-between gap-2">
