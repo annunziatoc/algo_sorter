@@ -1,11 +1,8 @@
 import React from "react";
 
-//used LLM to set types here
-
 interface Bar {
     id: number;
     height: number;
-    charArr: string[];
 }
 
 interface PromptAndButtonsProps {
@@ -29,18 +26,6 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
      }) => {
         return (
             <div className="flex flex-col gap-2 mr-2">
-
-                {/*<input type="text" placeholder="What do you want to see?" maxLength={50} className="text-center">*/}
-                {/*</input>*/}
-
-                {/*<button className={`text-nowrap`}*/}
-                {/*        onClick={() => {*/}
-
-                {/*        }}*/}
-                {/*        disabled={isSorting}>*/}
-                {/*    Set Input*/}
-                {/*</button>*/}
-
 
                 <div className="flex justify-between gap-2">
                     <button className={`text-nowrap`}

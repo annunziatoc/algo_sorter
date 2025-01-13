@@ -7,9 +7,7 @@ const Body = () => {
     interface Bar {
         id: number;
         height: number;
-        charArr: string[];
     }
-
 
     const [isSorting, setIsSorting] = useState(false)
     const [isSorted, setIsSorted] = useState(false)
@@ -23,7 +21,6 @@ const Body = () => {
 
 
     const generateArray = () => {
-        const chars = ["@", "%", "$", "#", "&"]
         // generate series of  bars using an Array of Bar Objects
         return Array.from(
             {length: 15},
@@ -31,18 +28,10 @@ const Body = () => {
             (_, index) => {
                 //setup
                 const height = Math.floor(Math.random() * 15) + 1
-                const setCharArr: string[] = []
-
-                //do this next thing 1-15 times
-                for (let i = 0; i < height; i++) {
-                    //push one of the chars at random into the array
-                    setCharArr.push(chars[Math.floor(Math.random() * chars.length)])
-                }
 
                 return {
                     id: index,
                     height: height,
-                    charArr: setCharArr
                 }
             }
         )
@@ -91,12 +80,8 @@ const Body = () => {
                          ${highlighted.includes(bar.id) ? "border-cyan-400" : ""}`}
                                  style={{
                                      height: `${bar.height}rem`,
-                                     writingMode: "vertical-lr",
                                      transition: 'all 75ms ease-in-out'
                                  }}>
-                                <p className="">
-                                    {bar.charArr.join("")}
-                                </p>
                             </div>
                         )
                     })}
