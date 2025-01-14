@@ -26,7 +26,7 @@ const Body = () => {
     const generateArray = () => {
         // generate series of  bars using an Array of Bar Objects
         return Array.from(
-            {length: 17},
+            {length: 18},
             //return a unique object to put into each array slot up to {length} # of times
             (_, index) => {
                 const height = Math.floor(Math.random() * 15) + 1
