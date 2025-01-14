@@ -25,10 +25,10 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
          generateArray
      }) => {
         return (
-            <div className="flex flex-col gap-2 mr-2">
+            <div className="flex flex-col gap-2 mr-6">
 
                 <div className="flex justify-between gap-2">
-                    <button className={`text-nowrap`}
+                    <button className={`text-nowrap ${isSorting ? "opacity-50" : ""}`}
                             onClick={() => {
                                 setIsSorted(false)
                                 setBars(generateArray())
@@ -37,7 +37,7 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
                         Gen New Arr
                     </button>
                     <button
-                        className={`text-nowrap ${isSorting ? "opacity-50 cursor-not-allowed" : ""}`}
+                        className={`text-nowrap ${isSorting ? "opacity-50" : ""}`}
                         onClick={() => (bubbleSort(bars))}
                         disabled={isSorting}>
                         Bubble Sort

@@ -83,7 +83,7 @@ const Body = () => {
 
                         {bars.map((bar) => {
                             return (
-                                <div key={bar.id} className={`w-6 h-10 border-2 rounded-md flex 
+                                <div key={bar.id} className={`w-6 h-10 border-2 rounded-md flex
                                 items-center justify-end py-1 px-4 pt-4  ml-1
                          ${highlighted.includes(bar.id) ? "border-cyan-400" : ""}`}
                                      style={{
@@ -110,5 +110,95 @@ const Body = () => {
     )
 }
 
-export default Body;
+export default Body
 
+////////////////////////////////////////////////////////////////////////////
+
+import React from "react";
+
+interface Bar {
+    id: number;
+    height: number;
+}
+
+interface PromptAndButtonsProps {
+    bars: Bar[];
+    setIsSorted: (value: boolean) => void;
+    setBars: React.Dispatch<React.SetStateAction<Bar[]>>;
+    isSorting: boolean;
+    bubbleSort: (bars: Bar[]) => Promise<void>;
+    generateArray: () => Bar[];
+}
+
+
+const PromptAndButtons: React.FC<PromptAndButtonsProps> =
+    ({
+         bars,
+         setIsSorted,
+         setBars,
+         isSorting,
+         bubbleSort,
+         generateArray
+     }) => {
+        return (
+            <div className="flex flex-col gap-2 mr-6">
+
+                <div className="flex justify-between gap-2">
+                    <button className={`text-nowrap ${isSorting ? "opacity-50" : ""}`}
+                            onClick={() => {
+                                setIsSorted(false)
+                                setBars(generateArray())
+                            }}
+                            disabled={isSorting}>
+                        Gen New Arr
+                    </button>
+                    <button
+                        className={`text-nowrap ${isSorting ? "opacity-50" : ""}`}
+                        onClick={() => (bubbleSort(bars))}
+                        disabled={isSorting}>
+                        Bubble Sort
+                    </button>
+                </div>
+
+            </div>
+        )
+    }
+
+export default PromptAndButtons
+
+////////////////////////////////////////////////////////////////////////////
+
+import React, {useEffect} from "react";
+import Prism from 'prismjs';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-tsx';
+import 'prism-themes/themes/prism-one-dark.css';
+
+
+
+interface CodeBlockProps {
+    code: string;
+    language?: string;
+}
+
+
+const CodeBlock: React.FC<CodeBlockProps> = ({ code, language = 'tsx' }) => {
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            Prism.highlightAll();
+        }
+    }, [code]);
+
+    return(
+        <>
+        <pre>
+            <code className={`language-${language}`}>
+                {code}
+            </code>
+        </pre>
+        </>
+    )
+}
+
+
+export default CodeBlock
