@@ -97,7 +97,8 @@ const Body = () => {
                     </div>
 
                     <div className="max-w-5xl">
-                        <button className="" onClick={() => setShowCode(!showCode)}>Click to see my code</button>
+                        <button className="" onClick={() => setShowCode(!showCode)}>
+                            Click to see my code</button>
                         {showCode?
                             <CodeBlock code={`${codeString}`}></CodeBlock>
                             : ''
