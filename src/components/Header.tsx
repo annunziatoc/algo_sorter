@@ -1,4 +1,5 @@
 import Logo from "./Logo.tsx";
+import {Link} from "react-router-dom";
 
 const Header = () => {
     return (
@@ -9,7 +10,10 @@ const Header = () => {
                 <a className="visited:text-white" href="https://chrisannunziato.com">
                     <div className="text-2xl text-stone-400 hover:text-stone-300 cursor-pointer">Chris A.</div></a>
                 <div className="flex justify-center items-center pl-40 gap-16">
-                    <div className="hover:text-stone-300 cursor-pointer">Sorting</div>
+                    <Link to="/sorting">
+                        <div className="hover:text-stone-300 cursor-pointer">Sorting</div>
+                    </Link>
+
                     <div className="hover:text-stone-300 cursor-pointer">Pathfinding</div>
                     <div className="hover:text-stone-300 cursor-pointer">Binary Search Tree</div>
                 </div>
