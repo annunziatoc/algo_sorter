@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import Logo from "./Logo.tsx";
 import PromptAndButtons from "./PromptAndButtons.tsx";
 import CodeBlock from "./CodeBlock.tsx";
 import codeString from './raw_body_text.txt?raw'
@@ -71,7 +70,7 @@ const Body = () => {
     return (
         <>
             <div className="h-screen w-screen bg-gray-700 p-4">
-                <Logo className="h-10 stroke-gray-400 stroke-2"/>
+
 
                 <div className="w-screen flex flex-col justify-center items-start gap-4 bg-gray-700">
                     <div className="flex items-end w-full h-96 mt-10 ">
@@ -98,8 +97,9 @@ const Body = () => {
 
                     <div className="max-w-5xl">
                         <button className="" onClick={() => setShowCode(!showCode)}>
-                            Click to see my code</button>
-                        {showCode?
+                            Click to see my code
+                        </button>
+                        {showCode ?
                             <CodeBlock code={`${codeString}`}></CodeBlock>
                             : ''
                         }
@@ -112,4 +112,6 @@ const Body = () => {
 }
 
 export default Body;
+
+
 
