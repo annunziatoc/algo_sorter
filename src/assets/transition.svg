@@ -1,0 +1,264 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 72">
+    <defs>
+        <!-- Pattern definition -->
+        <pattern id="fadePattern" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+            <rect width="6" height="6" fill="#1f2937"/>
+        </pattern>
+
+        <!-- Masks for different sections -->
+        <mask id="stripeMask">
+            <rect width="1200" height="72" fill="white"/>
+            <!-- First section - mostly black -->
+            <rect y="0" width="100" height="72" fill="black"/>
+
+            <!-- Transition area with decreasing density patterns -->
+            <g fill="black">
+                <!-- Section 1 (Dense pattern) -->
+                <rect x="100" y="0" width="6" height="6"/>
+                <rect x="112" y="0" width="6" height="6"/>
+                <rect x="124" y="0" width="6" height="6"/>
+                <rect x="136" y="0" width="6" height="6"/>
+                <rect x="148" y="0" width="6" height="6"/>
+
+                <rect x="106" y="6" width="6" height="6"/>
+                <rect x="118" y="6" width="6" height="6"/>
+                <rect x="130" y="6" width="6" height="6"/>
+                <rect x="142" y="6" width="6" height="6"/>
+                <rect x="154" y="6" width="6" height="6"/>
+
+                <rect x="100" y="12" width="6" height="6"/>
+                <rect x="112" y="12" width="6" height="6"/>
+                <rect x="124" y="12" width="6" height="6"/>
+                <rect x="136" y="12" width="6" height="6"/>
+                <rect x="148" y="12" width="6" height="6"/>
+
+                <rect x="106" y="18" width="6" height="6"/>
+                <rect x="118" y="18" width="6" height="6"/>
+                <rect x="130" y="18" width="6" height="6"/>
+                <rect x="142" y="18" width="6" height="6"/>
+                <rect x="154" y="18" width="6" height="6"/>
+
+                <rect x="100" y="24" width="6" height="6"/>
+                <rect x="112" y="24" width="6" height="6"/>
+                <rect x="124" y="24" width="6" height="6"/>
+                <rect x="136" y="24" width="6" height="6"/>
+                <rect x="148" y="24" width="6" height="6"/>
+
+                <rect x="106" y="30" width="6" height="6"/>
+                <rect x="118" y="30" width="6" height="6"/>
+                <rect x="130" y="30" width="6" height="6"/>
+                <rect x="142" y="30" width="6" height="6"/>
+                <rect x="154" y="30" width="6" height="6"/>
+
+                <rect x="100" y="36" width="6" height="6"/>
+                <rect x="112" y="36" width="6" height="6"/>
+                <rect x="124" y="36" width="6" height="6"/>
+                <rect x="136" y="36" width="6" height="6"/>
+                <rect x="148" y="36" width="6" height="6"/>
+
+                <rect x="106" y="42" width="6" height="6"/>
+                <rect x="118" y="42" width="6" height="6"/>
+                <rect x="130" y="42" width="6" height="6"/>
+                <rect x="142" y="42" width="6" height="6"/>
+                <rect x="154" y="42" width="6" height="6"/>
+
+                <rect x="100" y="48" width="6" height="6"/>
+                <rect x="112" y="48" width="6" height="6"/>
+                <rect x="124" y="48" width="6" height="6"/>
+                <rect x="136" y="48" width="6" height="6"/>
+                <rect x="148" y="48" width="6" height="6"/>
+
+                <rect x="106" y="54" width="6" height="6"/>
+                <rect x="118" y="54" width="6" height="6"/>
+                <rect x="130" y="54" width="6" height="6"/>
+                <rect x="142" y="54" width="6" height="6"/>
+                <rect x="154" y="54" width="6" height="6"/>
+
+                <rect x="100" y="60" width="6" height="6"/>
+                <rect x="112" y="60" width="6" height="6"/>
+                <rect x="124" y="60" width="6" height="6"/>
+                <rect x="136" y="60" width="6" height="6"/>
+                <rect x="148" y="60" width="6" height="6"/>
+
+                <rect x="106" y="66" width="6" height="6"/>
+                <rect x="118" y="66" width="6" height="6"/>
+                <rect x="130" y="66" width="6" height="6"/>
+                <rect x="142" y="66" width="6" height="6"/>
+                <rect x="154" y="66" width="6" height="6"/>
+
+                <!-- Section 2 (75% density) -->
+                <rect x="166" y="0" width="6" height="6"/>
+                <rect x="178" y="0" width="6" height="6"/>
+                <rect x="190" y="0" width="6" height="6"/>
+
+                <rect x="172" y="6" width="6" height="6"/>
+                <rect x="184" y="6" width="6" height="6"/>
+                <rect x="196" y="6" width="6" height="6"/>
+
+                <rect x="166" y="12" width="6" height="6"/>
+                <rect x="178" y="12" width="6" height="6"/>
+                <rect x="190" y="12" width="6" height="6"/>
+
+                <rect x="172" y="18" width="6" height="6"/>
+                <rect x="184" y="18" width="6" height="6"/>
+                <rect x="196" y="18" width="6" height="6"/>
+
+                <rect x="166" y="24" width="6" height="6"/>
+                <rect x="178" y="24" width="6" height="6"/>
+                <rect x="190" y="24" width="6" height="6"/>
+
+                <rect x="172" y="30" width="6" height="6"/>
+                <rect x="184" y="30" width="6" height="6"/>
+                <rect x="196" y="30" width="6" height="6"/>
+
+                <rect x="166" y="36" width="6" height="6"/>
+                <rect x="178" y="36" width="6" height="6"/>
+                <rect x="190" y="36" width="6" height="6"/>
+
+                <rect x="172" y="42" width="6" height="6"/>
+                <rect x="184" y="42" width="6" height="6"/>
+                <rect x="196" y="42" width="6" height="6"/>
+
+                <rect x="166" y="48" width="6" height="6"/>
+                <rect x="178" y="48" width="6" height="6"/>
+                <rect x="190" y="48" width="6" height="6"/>
+
+                <rect x="172" y="54" width="6" height="6"/>
+                <rect x="184" y="54" width="6" height="6"/>
+                <rect x="196" y="54" width="6" height="6"/>
+
+                <rect x="166" y="60" width="6" height="6"/>
+                <rect x="178" y="60" width="6" height="6"/>
+                <rect x="190" y="60" width="6" height="6"/>
+
+                <rect x="172" y="66" width="6" height="6"/>
+                <rect x="184" y="66" width="6" height="6"/>
+                <rect x="196" y="66" width="6" height="6"/>
+
+                <!-- Section 3 (50% density) -->
+                <rect x="208" y="0" width="6" height="6"/>
+                <rect x="220" y="12" width="6" height="6"/>
+                <rect x="232" y="0" width="6" height="6"/>
+                <rect x="244" y="12" width="6" height="6"/>
+
+                <rect x="214" y="6" width="6" height="6"/>
+                <rect x="226" y="18" width="6" height="6"/>
+                <rect x="238" y="6" width="6" height="6"/>
+                <rect x="250" y="18" width="6" height="6"/>
+
+                <rect x="208" y="24" width="6" height="6"/>
+                <rect x="220" y="36" width="6" height="6"/>
+                <rect x="232" y="24" width="6" height="6"/>
+                <rect x="244" y="36" width="6" height="6"/>
+
+                <rect x="214" y="30" width="6" height="6"/>
+                <rect x="226" y="42" width="6" height="6"/>
+                <rect x="238" y="30" width="6" height="6"/>
+                <rect x="250" y="42" width="6" height="6"/>
+
+                <rect x="208" y="48" width="6" height="6"/>
+                <rect x="220" y="60" width="6" height="6"/>
+                <rect x="232" y="48" width="6" height="6"/>
+                <rect x="244" y="60" width="6" height="6"/>
+
+                <rect x="214" y="54" width="6" height="6"/>
+                <rect x="226" y="66" width="6" height="6"/>
+                <rect x="238" y="54" width="6" height="6"/>
+                <rect x="250" y="66" width="6" height="6"/>
+
+                <!-- Section 4 (33% density) -->
+                <rect x="262" y="0" width="6" height="6"/>
+                <rect x="280" y="18" width="6" height="6"/>
+                <rect x="298" y="36" width="6" height="6"/>
+
+                <rect x="274" y="12" width="6" height="6"/>
+                <rect x="292" y="30" width="6" height="6"/>
+                <rect x="310" y="48" width="6" height="6"/>
+
+                <rect x="286" y="6" width="6" height="6"/>
+                <rect x="304" y="24" width="6" height="6"/>
+                <rect x="322" y="42" width="6" height="6"/>
+
+                <rect x="268" y="30" width="6" height="6"/>
+                <rect x="286" y="48" width="6" height="6"/>
+                <rect x="304" y="66" width="6" height="6"/>
+
+                <rect x="280" y="42" width="6" height="6"/>
+                <rect x="298" y="60" width="6" height="6"/>
+                <rect x="316" y="12" width="6" height="6"/>
+
+                <rect x="262" y="54" width="6" height="6"/>
+                <rect x="280" y="66" width="6" height="6"/>
+                <rect x="298" y="0" width="6" height="6"/>
+
+                <!-- Section 5 (25% density) -->
+                <rect x="334" y="0" width="6" height="6"/>
+                <rect x="358" y="24" width="6" height="6"/>
+                <rect x="346" y="48" width="6" height="6"/>
+                <rect x="370" y="66" width="6" height="6"/>
+
+                <rect x="352" y="12" width="6" height="6"/>
+                <rect x="376" y="36" width="6" height="6"/>
+                <rect x="364" y="60" width="6" height="6"/>
+
+                <rect x="340" y="30" width="6" height="6"/>
+                <rect x="364" y="6" width="6" height="6"/>
+                <rect x="352" y="42" width="6" height="6"/>
+
+                <rect x="334" y="54" width="6" height="6"/>
+                <rect x="358" y="18" width="6" height="6"/>
+                <rect x="382" y="48" width="6" height="6"/>
+
+                <!-- Section 6 (15% density) -->
+                <rect x="394" y="6" width="6" height="6"/>
+                <rect x="418" y="42" width="6" height="6"/>
+                <rect x="442" y="18" width="6" height="6"/>
+
+                <rect x="406" y="30" width="6" height="6"/>
+                <rect x="430" y="66" width="6" height="6"/>
+                <rect x="454" y="48" width="6" height="6"/>
+
+                <rect x="412" y="54" width="6" height="6"/>
+                <rect x="436" y="12" width="6" height="6"/>
+
+                <rect x="448" y="36" width="6" height="6"/>
+                <rect x="400" y="60" width="6" height="6"/>
+
+                <!-- Section 7 (10% density) -->
+                <rect x="466" y="24" width="6" height="6"/>
+                <rect x="490" y="6" width="6" height="6"/>
+                <rect x="514" y="42" width="6" height="6"/>
+                <rect x="484" y="66" width="6" height="6"/>
+                <rect x="508" y="30" width="6" height="6"/>
+                <rect x="478" y="0" width="6" height="6"/>
+                <rect x="502" y="54" width="6" height="6"/>
+
+                <!-- Section 8 (5% density) -->
+                <rect x="538" y="36" width="6" height="6"/>
+                <rect x="574" y="12" width="6" height="6"/>
+                <rect x="556" y="60" width="6" height="6"/>
+                <rect x="592" y="24" width="6" height="6"/>
+
+                <!-- Section 9 (3% density) -->
+                <rect x="628" y="18" width="6" height="6"/>
+                <rect x="664" y="48" width="6" height="6"/>
+                <rect x="700" y="6" width="6" height="6"/>
+
+                <!-- Section 10 (1% density) -->
+                <rect x="748" y="36" width="6" height="6"/>
+                <rect x="796" y="12" width="6" height="6"/>
+
+                <!-- Section 11 (very sparse) -->
+                <rect x="844" y="54" width="6" height="6"/>
+                <rect x="904" y="24" width="6" height="6"/>
+                <rect x="964" y="42" width="6" height="6"/>
+            </g>
+        </mask>
+    </defs>
+
+    <!-- Base rectangle with Tailwind gray-800 -->
+    <rect width="1200" height="72" fill="#1f2937"/>
+
+    <!-- Layered mask to create pattern -->
+    <rect width="1200" height="72" fill="#000000" mask="url(#stripeMask)"/>
+</svg>

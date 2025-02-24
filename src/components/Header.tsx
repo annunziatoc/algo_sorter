@@ -28,8 +28,10 @@ const Header = () => {
 
 
     return (
+        <>
         <header
-            className="w-screen h-64 text-xl bg-black text-stone-400"
+            className="w-screen h-64 text-xl bg-black text-stone-400
+            bg-gradient-to-b from-black to-gray-800 "
             onMouseMove={registerMagneticMovement}
             onMouseLeave={handleMouseLeave}
         >
@@ -53,13 +55,14 @@ const Header = () => {
                         key={i}
                         ref={(el: HTMLDivElement | null) => {
                             divsRef.current[i] = el
-                    }}
+                        }}
                         className="h-1 w-5 bg-green-300 border-2 border-green-300 rounded-full transition-transform duration-75 ease-in-out"
-                        style={{ transformOrigin: 'center' }}
+                        style={{transformOrigin: 'center'}}
                     />
                 ))}
             </div>
         </header>
+    </>
     );
 }
 

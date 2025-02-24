@@ -69,10 +69,8 @@ const Body = () => {
 
     return (
         <>
-            <div className="h-screen w-screen bg-gray-700 p-4">
-
-
-                <div className="w-screen flex flex-col justify-center items-start gap-4 bg-gray-700">
+            <div className="h-screen w-screen bg-gray-800">
+                <div className="w-screen flex flex-col justify-center items-start gap-4 ">
                     <div className="flex items-end w-full h-96 mt-10 ">
 
                         <PromptAndButtons
