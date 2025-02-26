@@ -69,16 +69,11 @@ const Sorting = () => {
 
     return (
         <>
-            <div className="h-screen w-screen bg-gray-800">
-                <div className="w-screen flex flex-col justify-center items-start gap-4 ">
-                    <div className="flex items-end w-full h-96 mt-10 ">
+            <div className="h-screen w-screen bg-gray-800 pl-32 ">
+                <div className="flex flex-col w-[800px] gap-4">
+                    <div className="flex items-end  h-64  mt-10">
 
-                        <PromptAndButtons
-                            bars={bars} setBars={setBars}
-                            setIsSorted={setIsSorted} isSorting={isSorting}
-                            bubbleSort={bubbleSort} generateArray={generateArray}/>
-
-                        {bars.map((bar) => {
+                                              {bars.map((bar) => {
                             return (
                                 <div key={bar.id} className={`w-6 h-10 border-2 rounded-md flex 
                                 items-center justify-end py-1 px-4 pt-4  ml-1
@@ -93,13 +88,20 @@ const Sorting = () => {
 
                     </div>
 
-                    <div className="max-w-5xl">
-                        <button className="" onClick={() => setShowCode(!showCode)}>
-                            Click to see my code
+                    <div className="max-w-5xl flex flex-col gap-2 ">
+                        <PromptAndButtons
+                            bars={bars} setBars={setBars}
+                            setIsSorted={setIsSorted} isSorting={isSorting}
+                            bubbleSort={bubbleSort} generateArray={generateArray}/>
+
+                        <button className="w-56 text-nowrap  font-medium text-gray-300
+                    h-12 w-32 rounded-md bg-[#1A1A1AFF]
+                    border border-transparent hover:border-[#646cff]
+                    transition duration-[250ms] cursor-pointer " onClick={() => setShowCode(!showCode)}>
+                            {showCode ? 'Hide my code' : 'Click to see my code'}
                         </button>
-                        {showCode ?
-                            <CodeBlock code={`${codeString}`}></CodeBlock>
-                            : ''
+                        {showCode &&
+                                <CodeBlock code={`${codeString}`}></CodeBlock>
                         }
                     </div>
 
