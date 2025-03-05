@@ -60,7 +60,7 @@ const Header = () => {
 
                 <GameOfLife/>
 
-                <div className="flex justify-center items-center gap-4 py-2">
+                <div className="flex justify-center items-center gap-4 py-1">
                     {[...Array(30)].map((_, i) => (
                         <div
                             key={i}
