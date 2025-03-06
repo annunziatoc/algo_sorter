@@ -1,3 +1,5 @@
+import Cell from "./Cell.tsx";
+
 const GameOfLife = () => {
 
     return (
@@ -6,11 +8,13 @@ const GameOfLife = () => {
                 Array.from({length: 70}, (_, index) => (
                     <div key={index}>
                         {
-                            Array.from({length: 12}, (_, index) => (
-                                <div key={index} className="h-4 w-4 bg-black border border-gray-500">
-
-                                </div>
-                            ))
+                            Array.from({length: 12}, (_, index) => {
+                                return (
+                                    <div key={index}>
+                                        <Cell/>
+                                    </div>
+                                )
+                            })
                         }
                     </div>
                 ))
