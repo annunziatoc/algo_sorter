@@ -1,16 +1,20 @@
-import React, {useState} from "react";
+import React from "react";
 
 type CellProps = {
-    cellRef : React.RefObject<HTMLDivElement | null>
+    isAlive: boolean
+    setIsAlive: React.Dispatch<React.SetStateAction<boolean>>
+
 }
 
-const Cell = ({cellRef} : CellProps) => {
-    const [isAlive, setIsAlive] = useState(false)
-    return (
-        <div ref={cellRef} onClick={() => setIsAlive(!isAlive)} className={`h-4 w-4 border 
+const Cell = ({isAlive, setIsAlive}: CellProps) => {
+
+
+
+return (
+    <div onClick={() => setIsAlive(!isAlive)} className={`h-4 w-4 border 
         border-gray-500 ${isAlive ? 'bg-green-300' : 'bg-black'}`}>
-        </div>
-    )
+    </div>
+)
 }
 
 
