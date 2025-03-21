@@ -31,7 +31,7 @@ const Header = () => {
         <>
             <header
                 className="w-screen h-96 text-xl bg-black text-stone-400
-            bg-gradient-to-b from-black to-gray-800 "
+            bg-gradient-to-b from-black to-gray-800 flex flex-col items-start"
                 onMouseMove={registerMagneticMovement}
                 onMouseLeave={handleMouseLeave}
             >
