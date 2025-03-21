@@ -31,7 +31,7 @@ const Header = () => {
         <>
             <header
                 className="w-screen h-96 text-xl bg-black text-stone-400
-            bg-gradient-to-b from-black to-gray-800 flex flex-col items-start"
+                bg-gradient-to-b from-black to-gray-800 flex flex-col justify-start items-center"
                 onMouseMove={registerMagneticMovement}
                 onMouseLeave={handleMouseLeave}
             >
@@ -41,7 +41,8 @@ const Header = () => {
                     <Logo className="h-10 stroke-gray-400 stroke-2"/>
                     <a href="https://chrisannunziato.com">
                         <div className="text-2xl text-stone-400 hover:text-stone-300
-                        cursor-pointer">Chris A.</div>
+                        cursor-pointer">Chris A.
+                        </div>
                     </a>
                     <div className="flex justify-center items-center pl-40 gap-16">
                         <Link to="/">
