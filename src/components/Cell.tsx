@@ -8,13 +8,11 @@ type CellProps = {
 
 const Cell = ({isAlive, setIsAlive}: CellProps) => {
 
-
-
-return (
-    <div onClick={() => setIsAlive(!isAlive)} className={`h-4 w-4 border 
+    return (
+        <div onClick={() => setIsAlive(!isAlive)} className={`h-4 w-4 border 
         border-gray-500 ${isAlive ? 'bg-green-300' : 'bg-black'}`}>
-    </div>
-)
+        </div>
+    )
 }
 
 

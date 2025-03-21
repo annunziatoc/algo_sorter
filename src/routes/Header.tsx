@@ -37,10 +37,11 @@ const Header = () => {
             >
 
 
-                <div className="flex items-center p-2">
+                <div className="flex items-center p-2 whitespace-nowrap">
                     <Logo className="h-10 stroke-gray-400 stroke-2"/>
                     <a href="https://chrisannunziato.com">
-                        <div className="text-2xl text-stone-400 hover:text-stone-300 cursor-pointer">Chris A.</div>
+                        <div className="text-2xl text-stone-400 hover:text-stone-300
+                        cursor-pointer">Chris A.</div>
                     </a>
                     <div className="flex justify-center items-center pl-40 gap-16">
                         <Link to="/">
