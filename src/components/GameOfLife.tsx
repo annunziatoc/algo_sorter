@@ -36,7 +36,7 @@ const GameOfLife = () => {
                         </div>
                     ))}
             </section>
-            <div className="flex gap-4">
+            <div className="flex gap-4 mb-2">
                 <button className="bg-amber-300 h-8 w-14 text-black flex justify-center items-center
             mb-2">Start
                 </button>
