@@ -61,14 +61,14 @@ const Header = () => {
 
                 <GameOfLife/>
 
-                <div className="flex justify-center items-center gap-4 py-1">
-                    {[...Array(30)].map((_, i) => (
+                <div className=" ml-7 flex justify-center items-center gap-4 py-1">
+                    {[...Array(25)].map((_, i) => (
                         <div
                             key={i}
                             ref={(el: HTMLDivElement | null) => {
                                 divsRef.current[i] = el
                             }}
-                            className="h-1 w-5 bg-green-300 border-2 border-green-300 rounded-full transition-transform duration-75 ease-in-out"
+                            className=" h-1 w-5 bg-green-300 border-2 border-green-300 rounded-full transition-transform duration-75 ease-in-out"
                             style={{transformOrigin: 'center'}}
                         />
                     ))}
