@@ -1,15 +1,18 @@
-import React from "react";
+import {useEffect, useState} from "react";
 
-type CellProps = {
-    isAlive: boolean
-    setIsAlive: React.Dispatch<React.SetStateAction<boolean>>
 
-}
+const Cell = (props: {reset: boolean}) => {
 
-const Cell = ({isAlive, setIsAlive}: CellProps) => {
+    const [isAlive, setIsAlive] = useState<boolean>(false)
+
+    useEffect(() => {
+            setIsAlive(false)
+    }, [props.reset]);
+
 
     return (
-        <div onClick={() => setIsAlive(!isAlive)} className={`h-4 w-4 border 
+        <div onClick={() => {setIsAlive(!isAlive)}}
+            className={`h-4 w-4 border
         border-gray-500 ${isAlive ? 'bg-green-300' : 'bg-black'}`}>
         </div>
     )

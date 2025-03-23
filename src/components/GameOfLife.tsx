@@ -6,30 +6,33 @@ const GameOfLife = () => {
     const rows = 12
     const cols = 57
 
-    const createEmptyBoard = () =>
+    // const [globalAlive, setGlobalAlive] = useState(false)
+
+    const [boardState, setBoardState] = useState<boolean[][]>(
         Array.from({length: rows}, () => Array.from({length: cols}, () => false))
+    )
 
-    const [isAlive, setIsAlive] = useState<boolean>(false)
-
-    const [boardState, setBoardState] = useState(createEmptyBoard)
-
+    const [reset, setReset] = useState<boolean>(false)
     const resetBoardState = () => {
-        setIsAlive(false)
-        setBoardState(createEmptyBoard())
+        setReset(true)
+        setBoardState(Array.from({length: rows}, () => Array.from({length: cols}, () => false)))
+        setTimeout(() => {
+            setReset(false)
+        }, 100)
     }
+
 
     return (
         <div className="min-w-[950px] ml-4 flex flex-col justify-center items-center">
             <section className=" w-full h-52 flex flex-col">
                 {
                     boardState.map((row, rowIndex) => (
-                        <div className="flex">
+                        <div key={`${rowIndex}`} className="flex">
                             {row.map((_, cellIndex) => {
                                 return (
                                     <Cell
                                         key={`${rowIndex}-${cellIndex}`}
-                                        isAlive={isAlive}
-                                        setIsAlive={() => setIsAlive((prev) => !prev)}
+                                        reset={reset}
                                     />
                                 )
                             })}
