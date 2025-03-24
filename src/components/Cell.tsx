@@ -1,14 +1,8 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
-
-const Cell = (props: {reset: boolean}) => {
+const Cell = () => {
 
     const [isAlive, setIsAlive] = useState<boolean>(false)
-
-    useEffect(() => {
-            setIsAlive(false)
-    }, [props.reset]);
-
 
     return (
         <div onClick={() => {setIsAlive(!isAlive)}}

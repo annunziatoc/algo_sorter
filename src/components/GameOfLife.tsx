@@ -1,26 +1,23 @@
 import Cell from "./Cell.tsx";
 import {useState} from "react";
 
+
 const GameOfLife = () => {
 
     const rows = 12
     const cols = 57
 
     // const [globalAlive, setGlobalAlive] = useState(false)
+    const [updateKey, setUpdateKey] = useState(0)
 
     const [boardState, setBoardState] = useState<boolean[][]>(
         Array.from({length: rows}, () => Array.from({length: cols}, () => false))
     )
 
-    const [reset, setReset] = useState<boolean>(false)
     const resetBoardState = () => {
-        setReset(true)
-        setBoardState(Array.from({length: rows}, () => Array.from({length: cols}, () => false)))
-        setTimeout(() => {
-            setReset(false)
-        }, 100)
+        setUpdateKey((prev) => prev + 1)
+        setBoardState(  Array.from({length: rows}, () => Array.from({length: cols}, () => false)))
     }
-
 
     return (
         <div className="min-w-[950px] ml-4 flex flex-col justify-center items-center">
@@ -31,8 +28,7 @@ const GameOfLife = () => {
                             {row.map((_, cellIndex) => {
                                 return (
                                     <Cell
-                                        key={`${rowIndex}-${cellIndex}`}
-                                        reset={reset}
+                                        key={`${updateKey}-{${rowIndex}-${cellIndex}`}
                                     />
                                 )
                             })}
@@ -40,7 +36,7 @@ const GameOfLife = () => {
                     ))}
             </section>
             <div className="flex gap-4 mb-2">
-                <button className="bg-amber-300 h-8 w-14 text-black flex justify-center items-center
+                <button  className="bg-amber-300 h-8 w-14 text-black flex justify-center items-center
             mb-2">Start
                 </button>
                 <button onClick={resetBoardState} className="bg-amber-300 h-8 w-14 text-black
@@ -54,3 +50,6 @@ const GameOfLife = () => {
 
 
 export default GameOfLife
+
+
+
