@@ -1,23 +1,36 @@
 import Cell from "./Cell.tsx";
 import {useState} from "react";
 
-
 const GameOfLife = () => {
 
-    const rows = 12
-    const cols = 57
-
-    // const [globalAlive, setGlobalAlive] = useState(false)
+    const ROWS = 12
+    const COLUMNS = 57
     const [updateKey, setUpdateKey] = useState(0)
-
     const [boardState, setBoardState] = useState<boolean[][]>(
-        Array.from({length: rows}, () => Array.from({length: cols}, () => false))
+        Array.from({length: ROWS}, () => Array.from({length: COLUMNS}, () => false))
     )
 
     const resetBoardState = () => {
         setUpdateKey((prev) => prev + 1)
-        setBoardState(  Array.from({length: rows}, () => Array.from({length: cols}, () => false)))
+        setBoardState(Array.from({length: ROWS}, () => Array.from({length: COLUMNS}, () => false)))
     }
+
+    const surroundCell = (updateKey, rowIndex, cellIndex) => {
+
+        const newBoardState = [...boardState]
+
+        newBoardState[rowIndex] = [...newBoardState[rowIndex]]
+        if(`${updateKey}-${rowIndex}-${cellIndex}`)
+        newBoardState[rowIndex][cellIndex + 1] = true
+        setBoardState(newBoardState)
+    }
+
+    // const differenceMatrix = [
+    //     [-1, -1], [-1, 0], [-1, 1],
+    //     [0, -1], [0, 0], [0, 1],
+    //     [1, -1], [1, 0], [1, 1],
+    // ]
+
 
     return (
         <div className="min-w-[950px] ml-4 flex flex-col justify-center items-center">
@@ -29,21 +42,14 @@ const GameOfLife = () => {
                                 return (
                                     <Cell
                                         key={`${updateKey}-{${rowIndex}-${cellIndex}`}
+                                        id={`${updateKey}-{${rowIndex}-${cellIndex}`}
+                                        updateFn ={surroundCell}
                                     />
                                 )
                             })}
                         </div>
                     ))}
             </section>
-            <div className="flex gap-4 mb-2">
-                <button  className="bg-amber-300 h-8 w-14 text-black flex justify-center items-center
-            mb-2">Start
-                </button>
-                <button onClick={resetBoardState} className="bg-amber-300 h-8 w-14 text-black
-                 flex justify-center items-center
-            mb-2">Reset
-                </button>
-            </div>
         </div>
     )
 }

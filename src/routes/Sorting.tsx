@@ -1,7 +1,5 @@
 import {useEffect, useState} from "react";
 import PromptAndButtons from "../components/PromptAndButtons.tsx";
-import CodeBlock from "../components/CodeBlock.tsx";
-import codeString from '../assets/data/raw_body_text.txt?raw'
 
 const Sorting = () => {
 
@@ -14,7 +12,6 @@ const Sorting = () => {
     const [isSorted, setIsSorted] = useState(false)
     const [highlighted, setHighlighted] = useState<number[]>([])
     const [bars, setBars] = useState<Bar[]>([])
-    const [showCode, setShowCode] = useState(false)
 
 
     useEffect(() => {
@@ -69,10 +66,9 @@ const Sorting = () => {
 
     return (
         <>
-            <div className="h-screen w-screen bg-gray-800 pl-32 ">
-                <div className="flex flex-col w-[800px] gap-4">
-                    <div className="flex items-end  h-64  mt-10">
-
+            <div className="h-screen flex justify-center items bg-gray-800">
+                <div className="flex flex-col">
+                    <div className="flex items-end h-60">
                                               {bars.map((bar) => {
                             return (
                                 <div key={bar.id} className={`w-6 h-10 border-2 rounded-md flex 
@@ -88,21 +84,11 @@ const Sorting = () => {
 
                     </div>
 
-                    <div className="max-w-5xl flex flex-col gap-2 ">
+                    <div className="flex gap-2 p-2">
                         <PromptAndButtons
                             bars={bars} setBars={setBars}
                             setIsSorted={setIsSorted} isSorting={isSorting}
                             bubbleSort={bubbleSort} generateArray={generateArray}/>
-
-                        <button className="w-56 text-nowrap  font-medium text-gray-300
-                    h-12 w-32 rounded-md bg-[#1A1A1AFF]
-                    border border-transparent hover:border-[#646cff]
-                    transition duration-[250ms] cursor-pointer " onClick={() => setShowCode(!showCode)}>
-                            {showCode ? 'Hide my code' : 'Click to see my code'}
-                        </button>
-                        {showCode &&
-                                <CodeBlock code={`${codeString}`}></CodeBlock>
-                        }
                     </div>
 
                 </div>

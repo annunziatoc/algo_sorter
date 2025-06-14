@@ -17,13 +17,13 @@ interface PromptAndButtonsProps {
 
 const PromptAndButtons: React.FC<PromptAndButtonsProps> =
     ({
-         bars,
-         setIsSorted,
-         setBars,
-         isSorting,
-         bubbleSort,
-         generateArray
-     }) => {
+        bars,
+        setIsSorted,
+        setBars,
+        isSorting,
+        bubbleSort,
+        generateArray
+    }) => {
         return (
             <div className="flex flex-col gap-2 mr-6">
                 <div className="flex  gap-2">
@@ -32,11 +32,11 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
                     border border-transparent hover:border-[#646cff] 
                     transition duration-[250ms] cursor-pointer 
                     ${isSorting ? "opacity-50" : ""}`}
-                            onClick={() => {
-                                setIsSorted(false)
-                                setBars(generateArray())
-                            }}
-                            disabled={isSorting}>
+                        onClick={() => {
+                            setIsSorted(false)
+                            setBars(generateArray())
+                        }}
+                        disabled={isSorting}>
                         Gen New Arr
                     </button>
                     <button
@@ -55,3 +55,14 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
     }
 
 export default PromptAndButtons
+
+
+
+
+
+
+
+
+
+
+

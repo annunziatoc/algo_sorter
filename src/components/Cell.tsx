@@ -1,8 +1,18 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-const Cell = () => {
+interface CellProps {
+    id: string;
+    updateFn: (isAlive: boolean) => boolean;
+}
 
+const Cell = ({id, updateFn}: CellProps) => {
     const [isAlive, setIsAlive] = useState<boolean>(false)
+
+    useEffect(()=> {
+        if(isAlive){
+            updateFn(isAlive)
+        }
+    }, [isAlive])
 
     return (
         <div onClick={() => {setIsAlive(!isAlive)}}
@@ -14,3 +24,4 @@ const Cell = () => {
 
 
 export default Cell
+

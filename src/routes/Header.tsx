@@ -30,21 +30,24 @@ const Header = () => {
     return (
         <>
             <header
-                className="w-screen h-96 text-xl bg-black text-stone-400
+                className="w-screen pb-6 text-xl bg-black text-stone-400
                 bg-gradient-to-b from-black to-gray-800 flex flex-col justify-start items-center"
                 onMouseMove={registerMagneticMovement}
                 onMouseLeave={handleMouseLeave}
             >
 
 
-                <div className="flex items-center p-2 whitespace-nowrap">
-                    <Logo className="h-10 stroke-gray-400 stroke-2"/>
-                    <a href="https://chrisannunziato.com">
-                        <div className="text-2xl text-stone-400 hover:text-stone-300
+                <div className="w-[1000px] px-10 flex items-center justify-between p-2 -ml-7">
+
+                    <div className="flex justify-between items-center">
+                        <Logo className="h-6 mt-1.5 stroke-gray-400 stroke-2"/>
+                        <a href="https://chrisannunziato.com">
+                            <div className="text-2xl text-stone-400 hover:text-stone-300
                         cursor-pointer">Chris A.
-                        </div>
-                    </a>
-                    <div className="flex justify-center items-center pl-40 gap-16">
+                            </div>
+                        </a>
+                    </div>
+                    <div className="flex items-center gap-6">
                         <Link to="/">
                             <div className="hover:text-stone-300 cursor-pointer">Home Page</div>
                         </Link>
@@ -62,7 +65,7 @@ const Header = () => {
 
                 <GameOfLife/>
 
-                <div className=" ml-7 flex justify-center items-center gap-4 py-1">
+                <div className="flex justify-center items-center gap-4 py-1 -ml-6">
                     {[...Array(25)].map((_, i) => (
                         <div
                             key={i}
