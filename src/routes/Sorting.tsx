@@ -22,7 +22,7 @@ const Sorting = () => {
     const generateArray = () => {
         // generate series of  bars using an Array of Bar Objects
         return Array.from(
-            {length: 18},
+            {length: 25},
             //return a unique object to put into each array slot up to {length} # of times
             (_, index) => {
                 const height = Math.floor(Math.random() * 15) + 1
@@ -54,7 +54,7 @@ const Sorting = () => {
                     }
                     //swap the ui
                     setBars([...array])
-                    await new Promise((resolve) => setTimeout(resolve, 60))
+                    await new Promise((resolve) => setTimeout(resolve, 25))
                     setHighlighted([])
                 }
             }
@@ -64,20 +64,28 @@ const Sorting = () => {
     }
 
 
+    const mergeSort = (oldArr: Bar[]) => {
+        const array = [...oldArr]
+
+
+    }
+
+
     return (
         <>
             <div className="h-screen flex justify-center items bg-gray-800">
                 <div className="flex flex-col">
                     <div className="flex items-end h-60">
-                                              {bars.map((bar) => {
+                        {bars.map((bar) => {
                             return (
-                                <div key={bar.id} className={`w-6 h-10 border-2 rounded-md flex 
-                                items-center justify-end py-1 px-4 pt-4  ml-1
-                         ${highlighted.includes(bar.id) ? "border-cyan-400" : ""}`}
-                                     style={{
-                                         height: `${bar.height}rem`,
-                                         transition: 'all 60ms ease-in-out'
-                                     }}>
+                                <div
+                                    key={bar.id} className={`border-2 rounded-md flex 
+                                items-center justify-end py-1 px-3 pt-4 ml-0.5
+                         ${highlighted.includes(bar.id) ? "border-cyan-400 bg-cyan-700" : ""}`}
+                                    style={{
+                                        height: `${bar.height}rem`,
+                                        transition: 'all 60ms ease-in-out'
+                                    }}>
                                 </div>
                             )
                         })}
@@ -88,7 +96,7 @@ const Sorting = () => {
                         <PromptAndButtons
                             bars={bars} setBars={setBars}
                             setIsSorted={setIsSorted} isSorting={isSorting}
-                            bubbleSort={bubbleSort} generateArray={generateArray}/>
+                            bubbleSort={bubbleSort} mergeSort={mergeSort} generateArray={generateArray}/>
                     </div>
 
                 </div>

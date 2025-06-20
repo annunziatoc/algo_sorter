@@ -74,7 +74,6 @@ const GameOfLife = () => {
 
     useEffect(() => {
         const resetTimer = setInterval(() => {
-            console.log('called')
             setGrid(Array.from({length: ROWS}, (_, row) => {
                 return Array.from({length: COLUMNS}, (_, col) => {
                     const isAlive = Math.random() < 0.25 ? 1 : 0
