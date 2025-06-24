@@ -11,7 +11,7 @@ interface PromptAndButtonsProps {
     setBars: React.Dispatch<React.SetStateAction<Bar[]>>;
     isSorting: boolean;
     bubbleSort: (bars: Bar[]) => Promise<void>;
-    mergeSort: (bars: Bar[]) => Promise<void>;
+    selectionSort: (bars: Bar[]) => Promise<void>;
     generateArray: () => Bar[];
 }
 
@@ -23,7 +23,7 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
         setBars,
         isSorting,
         bubbleSort,
-        mergeSort,
+        selectionSort,
         generateArray
     }) => {
         return (
@@ -55,9 +55,9 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
                     h-12 w-32 rounded-md bg-[#1A1A1AFF] 
                     border border-transparent hover:border-[#646cff] 
                     transition duration-[250ms] cursor-pointer ${isSorting ? "opacity-50" : ""}`}
-                        onClick={() => (mergeSort(bars))}
+                        onClick={() => (selectionSort(bars))}
                         disabled={isSorting}>
-                        Merge Sort
+                        Selection Sort
                     </button>
                 </div>
 
