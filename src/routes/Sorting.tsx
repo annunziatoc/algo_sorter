@@ -27,7 +27,9 @@ const Sorting = () => {
                 const height = Math.floor(Math.random() * 15) + 1
 
                 return {
+                    //immutable identifier even when array gets rearranged
                     id: index,
+                    //height used as measure for ascending order sorting
                     height: height,
                 }
             }
@@ -52,7 +54,7 @@ const Sorting = () => {
                     setBars([...array]);
                     //no more code in this function runs until the promise resolves
                     //this function execution will block but thread level is still concurrent
-                    await new Promise((resolve) => setTimeout(resolve, 25))
+                    await new Promise((resolve) => setTimeout(resolve, 20))
                     setHighlighted([])
                 }
             }
@@ -60,6 +62,44 @@ const Sorting = () => {
         }
         setIsSorted(true)
     }
+
+
+    const selectionSort = async (originalArr: Bar[]) => {
+        const array = [...originalArr]
+
+        if (!isSorted) {
+            setIsSorting(true)
+            for (let i = 0; i < array.length - 1; i++) {
+                //store the index so we can use j outside the loop
+                //assume first position has the min for now
+                //on increment of i, after the first min is placed we go to the next i + 1
+                let minIndex = i
+                for (let j = i + 1; j < array.length; j++) {
+                    //compare heights, to know which values to swap
+                    if (array[j].height < array[minIndex].height) {
+                        minIndex = j
+                    }
+                }
+
+                //highlight the bars being swapped by adding id to array
+                setHighlighted([array[minIndex].id, array[i].id]);
+
+                //swap the bars to push min to next-most front position
+                [array[i], array[minIndex]] = [array[minIndex], array[i]]
+
+                //update the reference and pause for react
+                setBars([...array])
+                //tell react to rerender
+                await new Promise((resolve) => setTimeout(resolve, 75))
+                //un-highlight
+                setHighlighted([])
+
+            }
+            setIsSorting(false)
+        }
+        setIsSorted(true)
+    }
+
 
     //
     // const mergeSort = async (array: Bar[]) => {
@@ -111,40 +151,14 @@ const Sorting = () => {
     // }
     //
 
-    const selectionSort = async (originalArr: Bar[]) => {
-        const array = [...originalArr]
-
-        if (array.length <= 1) {
-            return array
-        }
-
-        //track index instead of values
-        let minIndex = 0
-        //until the end of the array we do this
-        for (let i = 0; i < array.length; i++) {
-            //compare the heights of the current and the min
-            if (array[i].height < array[minIndex].height) {
-                minIndex = i
-                setHighlighted([array[i].id, array[minIndex].id])
-            }
-        }
-        //with the min in place we spread the rest
-        setBars([...array])
-        await new Promise((onResolution) => setTimeout(() => onResolution, 100))
-        setHighlighted([])
-
-        const rest = array.filter((_, index) => index !== minIndex)
-        const minBar = array[minIndex]
-        return [minBar, ...await selectionSort(rest)]
-    }
-
 
     return (
         <>
             <div className="h-screen flex justify-center items bg-gray-800">
                 <div className="flex flex-col">
                     <div className="flex items-end h-60">
-                        {bars.map((bar) => {
+                        {bars.map((bar) => { //display an array of bars that will
+                            // be highlighted and updated on state change
                             return (
                                 <div
                                     key={bar.id} className={`border-2 rounded-md flex 
