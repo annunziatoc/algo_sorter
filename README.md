@@ -4,6 +4,7 @@ An interactive React-based web application for visualizing sorting algorithms. T
 
 🚀 Live Demo
 https://annunziatoviz.com/
+<br>
 Updates are frequent and ongoing. 
 
 
