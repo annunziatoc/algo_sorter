@@ -80,7 +80,6 @@ const Sorting = () => {
                         minIndex = j
                     }
                 }
-
                 //highlight the bars being swapped by adding id to array
                 setHighlighted([array[minIndex].id, array[i].id]);
 
@@ -101,55 +100,74 @@ const Sorting = () => {
     }
 
 
-    //
-    // const mergeSort = async (array: Bar[]) => {
-    //     if (array.length <= 1) return array
-    //
-    //     const half = Math.floor(array.length / 2)
-    //     const left = array.slice(0, half)
-    //     const right = array.slice(half, array.length)
-    //
-    //     const resultLeft = mergeSort(left)
-    //     const resultRight = mergeSort(right)
-    //
-    //
-    //     return await merge(await resultLeft, await resultRight)
-    //
-    //
-    //     async function merge(left: Bar[], right: Bar[]) {
-    //
-    //         const mergedArr = []
-    //         let i = 0
-    //         let j = 0
-    //         //if either array is exhausted.
-    //         while (i < left.length && j < right.length) {
-    //             setHighlighted([left[i].id, right[j].id])
-    //             if (left[i].height < right[j].height) {
-    //                 mergedArr.push(left[i])
-    //                 i++
-    //             } else {
-    //                 mergedArr.push(right[j])
-    //                 j++
-    //             }
-    //             await new Promise((resolve) => setTimeout(resolve, 25))
-    //
-    //         }
-    //
-    //         while (i < left.length) {
-    //             mergedArr.push(left[i])
-    //             i++
-    //         }
-    //
-    //         while (j < right.length) {
-    //             mergedArr.push(right[j])
-    //             j++
-    //         }
-    //         // setBars([...mergedArr])
-    //         setHighlighted([])
-    //         return mergedArr
-    //     }
-    // }
-    //
+    //need a wrapper to initialize the indices
+    const mergeSort = async (originalArr: Bar[]) => {
+        const array = [...originalArr]
+
+        if (!isSorted) {
+            setIsSorting(true)
+            await splitArray(array, 0, array.length - 1)
+            setIsSorting(false)
+        }
+        setIsSorted(true)
+    }
+
+    const splitArray = async (array: Bar[], leftIndex: number, rightIndex: number) => {
+        //strategy is to keep the array but pass indices to work on specific sections of it
+        //split until the indices are equal then return
+        if (leftIndex >= rightIndex) return array
+
+        const mid = Math.floor((leftIndex + rightIndex) / 2)
+
+        //let's split
+        await splitArray(array, leftIndex, mid)
+        await splitArray(array, mid + 1, rightIndex)
+
+        //let's merge
+        await mergeInPlace(array, leftIndex, mid, rightIndex)
+    }
+
+    async function mergeInPlace(array: Bar[], leftIndex: number, mid: number, rightIndex: number) {
+
+        //compare using proxies, but don't write with these arrays
+        const leftArray = array.slice(leftIndex, mid + 1)
+        const rightArray = array.slice(mid + 1, rightIndex + 1)
+
+        let i = 0
+        let j = 0
+        let k = leftIndex
+
+        while(i < leftArray.length && j < rightArray.length) {
+            setHighlighted([leftArray[i].id, rightArray[j].id])
+
+            if(leftArray[i].height <= rightArray[j].height) {
+                array[k] = leftArray[i]
+                i++
+            } else {
+                array[k] = rightArray[j]
+                j++
+            }
+            k++
+
+            setBars([...array])
+            await new Promise(resolve => setTimeout(resolve, 50))
+            setHighlighted([])
+        }
+
+        //copy remaining
+        while (i < leftArray.length) {
+            array[k] = leftArray[i];
+            i++; k++;
+            setBars([...array]);
+            await new Promise(resolve => setTimeout(resolve, 25));
+        }
+        while (j < rightArray.length) {
+            array[k] = rightArray[j];
+            j++; k++;
+            setBars([...array]);
+            await new Promise(resolve => setTimeout(resolve, 25));
+        }
+    }
 
 
     return (
@@ -179,6 +197,7 @@ const Sorting = () => {
                             bars={bars} setBars={setBars}
                             setIsSorted={setIsSorted} isSorting={isSorting}
                             bubbleSort={bubbleSort} selectionSort={selectionSort}
+                            mergeSort={mergeSort}
                             generateArray={generateArray}/>
                     </div>
 

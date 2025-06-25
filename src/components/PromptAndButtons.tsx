@@ -12,24 +12,27 @@ interface PromptAndButtonsProps {
     isSorting: boolean;
     bubbleSort: (bars: Bar[]) => Promise<void>;
     selectionSort: (bars: Bar[]) => Promise<void>;
+    mergeSort: (bars: Bar[]) => Promise<void>;
     generateArray: () => Bar[];
 }
 
 
 const PromptAndButtons: React.FC<PromptAndButtonsProps> =
     ({
-        bars,
-        setIsSorted,
-        setBars,
-        isSorting,
-        bubbleSort,
-        selectionSort,
-        generateArray
-    }) => {
+         bars,
+         setIsSorted,
+         setBars,
+         isSorting,
+         bubbleSort,
+         mergeSort,
+         selectionSort,
+         generateArray
+     }) => {
         return (
             <div className="flex flex-col gap-2 mr-6">
                 <div className="flex  gap-2">
-                    <button className={`text-nowrap  font-medium text-gray-300  
+                    <button
+                        className={`text-nowrap  font-medium text-gray-300  
                     h-12 w-32 rounded-md bg-[#1A1A1AFF] 
                     border border-transparent hover:border-[#646cff] 
                     transition duration-[250ms] cursor-pointer 
@@ -58,6 +61,15 @@ const PromptAndButtons: React.FC<PromptAndButtonsProps> =
                         onClick={() => (selectionSort(bars))}
                         disabled={isSorting}>
                         Selection Sort
+                    </button>
+                    <button
+                        className={`text-nowrap  font-medium text-gray-300  
+                    h-12 w-32 rounded-md bg-[#1A1A1AFF] 
+                    border border-transparent hover:border-[#646cff] 
+                    transition duration-[250ms] cursor-pointer ${isSorting ? "opacity-50" : ""}`}
+                        onClick={() => (mergeSort(bars))}
+                        disabled={isSorting}>
+                        Merge Sort
                     </button>
                 </div>
 
