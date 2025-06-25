@@ -30,7 +30,7 @@ const Header = () => {
     return (
         <>
             <header
-                className="w-screen pb-6 text-xl bg-black text-stone-400
+                className="pb-6 text-xl bg-black text-stone-400
                 bg-gradient-to-b from-black to-gray-800 flex flex-col justify-start items-center"
                 onMouseMove={registerMagneticMovement}
                 onMouseLeave={handleMouseLeave}
@@ -43,7 +43,7 @@ const Header = () => {
                         <Logo className="h-6 mt-1.5 stroke-gray-400 stroke-2"/>
                         <a href="https://chrisannunziato.com">
                             <div className="text-2xl text-stone-400 hover:text-stone-300
-                        cursor-pointer">Chris A.
+                        cursor-pointer">Chris Annunziato
                             </div>
                         </a>
                     </div>
@@ -54,11 +54,8 @@ const Header = () => {
                         <Link to="/sorting">
                             <div className="hover:text-stone-300 cursor-pointer">Sorting</div>
                         </Link>
-                        <Link to="/pathfinding">
-                            <div className="hover:text-stone-300 cursor-pointer">Pathfinding</div>
-                        </Link>
-                        <Link to="binarysearchtree">
-                            <div className="hover:text-stone-300 cursor-pointer">Binary Search Tree</div>
+                        <Link to="/linkedlist">
+                            <div className="hover:text-stone-300 cursor-pointer">LinkedList</div>
                         </Link>
                     </div>
                 </div>

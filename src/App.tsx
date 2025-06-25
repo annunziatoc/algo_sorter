@@ -1,7 +1,8 @@
-import Main from "./routes/Main.tsx";
+import HomePage from "./routes/HomePage.tsx";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Layout from "./routes/Layout.tsx";
 import Sorting from "./routes/Sorting.tsx";
+import LinkedList from "./routes/LinkedList.tsx";
 
 
 function App() {
@@ -9,10 +10,9 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route element={<Layout />}>
-                    <Route path="/" element={<Main/>}/>
+                    <Route path="/" element={<HomePage/>}/>
                     <Route path="/sorting" element={<Sorting/>} />
-                    <Route path="/pathfinding" element={<Main/>} />
-                    <Route path="/binarysearchtree" element={<Main/>} />
+                    <Route path="/linkedlist" element={<LinkedList/>} />
                 </Route>
             </Routes>
         </BrowserRouter>

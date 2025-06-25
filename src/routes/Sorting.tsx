@@ -22,7 +22,7 @@ const Sorting = () => {
     const generateArray = () => {
         // generate series of  bars using an array of bar objects
         return Array.from(
-            {length: 29},
+            {length: 30},
             (_, index) => {
                 const height = Math.floor(Math.random() * 15) + 1
 
@@ -137,10 +137,10 @@ const Sorting = () => {
         let j = 0
         let k = leftIndex
 
-        while(i < leftArray.length && j < rightArray.length) {
+        while (i < leftArray.length && j < rightArray.length) {
             setHighlighted([leftArray[i].id, rightArray[j].id])
 
-            if(leftArray[i].height <= rightArray[j].height) {
+            if (leftArray[i].height <= rightArray[j].height) {
                 array[k] = leftArray[i]
                 i++
             } else {
@@ -157,13 +157,15 @@ const Sorting = () => {
         //copy remaining
         while (i < leftArray.length) {
             array[k] = leftArray[i];
-            i++; k++;
+            i++;
+            k++;
             setBars([...array]);
             await new Promise(resolve => setTimeout(resolve, 25));
         }
         while (j < rightArray.length) {
             array[k] = rightArray[j];
-            j++; k++;
+            j++;
+            k++;
             setBars([...array]);
             await new Promise(resolve => setTimeout(resolve, 25));
         }
@@ -172,8 +174,8 @@ const Sorting = () => {
 
     return (
         <>
-            <div className="h-screen flex justify-center items bg-gray-800">
-                <div className="flex flex-col">
+            <div className="h-full flex justify-center  bg-gray-800 ">
+                <div className="flex flex-col w-[930px] px-10 -ml-10">
                     <div className="flex items-end h-60">
                         {bars.map((bar) => { //display an array of bars that will
                             // be highlighted and updated on state change
@@ -191,7 +193,6 @@ const Sorting = () => {
                         })}
 
                     </div>
-
                     <div className="flex gap-2 p-2">
                         <PromptAndButtons
                             bars={bars} setBars={setBars}
@@ -200,7 +201,30 @@ const Sorting = () => {
                             mergeSort={mergeSort}
                             generateArray={generateArray}/>
                     </div>
+                    <div className="flex gap-3 pb-4 text-sm ">
+                        <div className="text-stone-300 flex flex-col gap-2 w-[40%]">
+                            <p><u>Bubble sort</u> works by comparing two adjacent values and swapping if the left is
+                                greater than
+                                the right. Essentially bubbling the highest value to the rightmost position.</p>
+                            <p>You will notice the constant adjacent comparisons as it loops through the entire
+                                array.</p>
+                            <p>The time complexity is O(n²) because in the worst case, we make n comparisons for each of
+                                the
+                                n elements. For an array of 30 elements, that's roughly 30 × 30 = 900 comparisons
+                                maximum.</p>
 
+                        </div>
+                        <div className="text-stone-300 flex flex-col gap-2 w-[40%]">
+                            <p><u>Selection sort</u> works by looping through the array to find the minimum value on each pass, then swapping it with the element at the current position to build the sorted portion from left to right.</p>
+                            <p>This is why it very cleanly appears to order from left to right.</p>
+                            <p>The time complexity is O(n²) because it makes (n-1) + (n-2) + ... + 1 comparisons, which equals n(n-1)/2 total comparisons.</p>
+                        </div>
+                        <div className="text-stone-300 flex flex-col gap-2 w-[40%]">
+                            <p><u>Merge sort</u> uses a divide-and-conquer strategy by recursively splitting the array in half until each piece contains just one element (which is sorted by definition).</p>
+                            <p>It then merges these sorted pieces back together as the recursion unwinds, combining two sorted arrays into one larger sorted array at each step.</p>
+                            <p>The time complexity is O(n log n) because we divide the array log n times, and merging takes O(n) time at each level.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
