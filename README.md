@@ -1,11 +1,9 @@
 
+## AnnunziatoViz Algorithm Visualizer
+An interactive React-based web application for visualizing sorting algorithms. This project combines algorithm education with frontend development practice, creating animated demonstrations of how different sorting algorithms work step-by-step.
 
-### Annunziato Viz
-
-This project aims to create a visualizer of standard algorithms in React.
-
-All you need to do is click some buttons and enjoy the sights.
-
+🚀 Live Demo
+https://annunziatoviz.com/
 Updates are frequent and ongoing. 
 
 
