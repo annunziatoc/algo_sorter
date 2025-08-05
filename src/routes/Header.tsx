@@ -52,10 +52,7 @@ const Header = () => {
                             <div className="hover:text-stone-300 cursor-pointer">Home Page</div>
                         </Link>
                         <Link to="/sorting">
-                            <div className="hover:text-stone-300 cursor-pointer">Sorting</div>
-                        </Link>
-                        <Link to="/linkedlist">
-                            <div className="hover:text-stone-300 cursor-pointer">LinkedList</div>
+                            <div className="hover:text-stone-300 cursor-pointer">Sorting Algorithms</div>
                         </Link>
                     </div>
                 </div>
