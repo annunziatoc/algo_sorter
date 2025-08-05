@@ -3,7 +3,7 @@ const HomePage = () => {
         <div className="h-full flex flex-col justify-start items-center bg-gray-800 text-stone-300">
             <div className="w-[450px] flex flex-col gap-4 text-lg">
                 <p>Welcome to AnnunziatoViz.</p>
-                <p>I built this site to deepen my understanding of frontend web development through interactive visualizations.</p>
+                <p>I built this site to deepen my understanding of React through interactive visualizations.</p>
                 <p>This is very much a learning project, so expect frequent updates as I add new algorithms and improve the
                     existing ones.</p>
                 <p>My personal website is accessible <a href="https://chrisannunziato.com/" className="underline">here.</a></p>
